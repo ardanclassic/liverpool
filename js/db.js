@@ -1,4 +1,4 @@
-const dbPromised = idb.open("Liverpool-DB", 2, (liverpoolDB) => {
+const dbPromised = idb.open("Liverpool-DB", 5, (liverpoolDB) => {
     switch (liverpoolDB.oldVersion) {
         case 0:
             const playerStore = liverpoolDB.createObjectStore('players', {keyPath: 'id'});
@@ -6,13 +6,86 @@ const dbPromised = idb.open("Liverpool-DB", 2, (liverpoolDB) => {
         case 1:
             const leagueStore = liverpoolDB.createObjectStore('league', {keyPath: 'id'});
             leagueStore.createIndex('name', 'name');
+        case 2:
+            liverpoolDB.createObjectStore('Liverpool', {keyPath: 'id'});
+        case 3:
+            liverpoolDB.createObjectStore('OffLeague', {keyPath: 'id'});
+        case 4:
+            liverpoolDB.createObjectStore('OffPlayer', {keyPath: 'id'});
     }
 });
 
 
+/** ------------------------- OFFLINE MODE ------------------------- */
+
+function saveLiverpoolData(team) {
+    dbPromised.then(db => {
+        const tx = db.transaction("Liverpool", "readwrite");
+        const store = tx.objectStore("Liverpool");
+        store.put(team);
+        return tx.complete;
+    })
+}
+
+function getLiverpoolData(id) {
+    return new Promise((resolve, reject) => {
+        dbPromised
+        .then((db) => {
+            const tx = db.transaction("Liverpool", "readonly");
+            const store = tx.objectStore("Liverpool");
+            return store.get(id);
+        })
+        .then((data) => resolve(data));
+    });
+}
+
+function saveLeagueByID(league) {
+    dbPromised.then(db => {
+        const tx = db.transaction("OffLeague", "readwrite");
+        const store = tx.objectStore("OffLeague");
+        store.put(league);
+        return tx.complete;
+    })
+}
+
+function getLeagueByID(id) {
+    return new Promise((resolve, reject) => {
+        dbPromised
+        .then((db) => {
+            const tx = db.transaction("OffLeague", "readonly");
+            const store = tx.objectStore("OffLeague");
+            return store.get(id);
+        })
+        .then((data) => resolve(data));
+    });
+}
+
+function savePlayerByID(player) {
+    dbPromised.then(db => {
+        const tx = db.transaction("OffPlayer", "readwrite");
+        const store = tx.objectStore("OffPlayer");
+        store.put(player);
+        return tx.complete;
+    })
+}
+
+function getPlayerByID(id) {
+    return new Promise((resolve, reject) => {
+        dbPromised
+        .then((db) => {
+            const tx = db.transaction("OffPlayer", "readonly");
+            const store = tx.objectStore("OffPlayer");
+            return store.get(id);
+        })
+        .then((data) => resolve(data));
+    });
+}
+
+
+
 /** ------------------------- BOOKMARK PLAYER ------------------------- */
 
-export function bookmarkPlayer(player) {
+function bookmarkPlayer(player) {
     dbPromised.then(db => {
         const tx = db.transaction("players", "readwrite");
         const store = tx.objectStore("players");
@@ -23,7 +96,7 @@ export function bookmarkPlayer(player) {
     .then(() => console.log(`Add ${player.name} to Favorite List`));
 }
 
-export function getAllBookmarkPlayer() {
+function getAllBookmarkPlayer() {
     return new Promise(async (resolve, reject) => {
         dbPromised
         .then((db) => {
@@ -35,7 +108,7 @@ export function getAllBookmarkPlayer() {
     });
 }
 
-export function getBookmarkPlayerById(id) {
+function getBookmarkPlayerById(id) {
     return new Promise((resolve, reject) => {
         dbPromised
         .then((db) => {
@@ -48,7 +121,7 @@ export function getBookmarkPlayerById(id) {
     });
 }
 
-export function deleteBookmarkPlayer(player) {
+function deleteBookmarkPlayer(player) {
     dbPromised
     .then((db) => {
         var tx = db.transaction('players', 'readwrite');
@@ -62,7 +135,7 @@ export function deleteBookmarkPlayer(player) {
 
 /** ------------------------- BOOKMARK LEAGUE ------------------------- */
 
-export function bookmarkLeague(league) {
+function bookmarkLeague(league) {
     dbPromised.then(db => {
         const tx = db.transaction("league", "readwrite");
         const store = tx.objectStore("league");
@@ -73,7 +146,7 @@ export function bookmarkLeague(league) {
     .then(() => console.log(`Add ${league.competition.name} to Favorite List`));
 }
 
-export function getAllBookmarkLeague() {
+function getAllBookmarkLeague() {
     return new Promise(async (resolve, reject) => {
         dbPromised
         .then((db) => {
@@ -85,7 +158,7 @@ export function getAllBookmarkLeague() {
     });
 }
 
-export function getBookmarkLeagueById(id) {
+function getBookmarkLeagueById(id) {
     return new Promise(async (resolve, reject) => {
         dbPromised
         .then((db) => {
@@ -98,7 +171,7 @@ export function getBookmarkLeagueById(id) {
     });
 }
 
-export function deleteBookmarkLeague(league) {
+function deleteBookmarkLeague(league) {
     dbPromised
     .then((db) => {
         var tx = db.transaction('league', 'readwrite');

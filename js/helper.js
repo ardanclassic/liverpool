@@ -1,5 +1,5 @@
 
-export function setHomePage(info) {
+function setHomePage(info) {
     const element = `
 		<div class="img-parallax"></div>
 		<div class="parallax-shadow"></div>
@@ -71,7 +71,7 @@ export function setHomePage(info) {
 	document.getElementById("homepage").innerHTML = element;
 }
 
-export function setGroupSquad() {
+function setGroupSquad() {
 	const allSquad = [
 		{ id: "Goalkeeper", division: 'GOALKEEPER' },
 		{ id: "Defender", division: 'DEFENDER' },
@@ -106,7 +106,7 @@ export function setGroupSquad() {
 	document.getElementById("team-squad").innerHTML = group;
 }
 
-export function setSquad(val, dt) {
+function setSquad(val, dt) {
 	return val += `
 		<div class="col s6 m4 l3">
 			<a href="#player?id=${dt.id}">
@@ -124,7 +124,7 @@ export function setSquad(val, dt) {
 	`;
 }
 
-export function setPlayerInfo(info) {
+function setPlayerInfo(info) {
     const element = `
 		<div class="col s12 m6 l5">
 			${ info.id === 9344 ?
@@ -188,7 +188,7 @@ export function setPlayerInfo(info) {
 	}
 }
 
-export function setAllLeagueInfo(info, fromBookmark = false) {
+function setAllLeagueInfo(info, fromBookmark = false) {
 	let dataCompetitions = ``;
 	info.forEach(league => {
 		dataCompetitions += `
@@ -216,7 +216,7 @@ export function setAllLeagueInfo(info, fromBookmark = false) {
 	}
 }
 
-export function setLeagueInfo(info) {
+function setLeagueInfo(info) {
 
 	// setup for indexedDB
 	info.id = info.competition.id;
@@ -234,7 +234,7 @@ export function setLeagueInfo(info) {
 		setRegularSeason(params) : setTournamentLeague(params)
 }
 
-export function showLoading(id) {
+function showLoading(id) {
     const element = `<div class="preloader-wrapper big active">
         <div class="spinner-layer spinner-red-only">
             <div class="circle-clipper left">
@@ -252,7 +252,7 @@ export function showLoading(id) {
     return document.getElementById(id).innerHTML = element;
 }
 
-export function errDataNotFound() {
+function errDataNotFound() {
     const element = `
     <div class="error-api container align-center">
         <h1>Sorry, data not found!</h1>
@@ -262,7 +262,7 @@ export function errDataNotFound() {
     return document.getElementById('bodyContent').innerHTML = element;
 }
 
-export function errApiLimit() {
+function errApiLimit() {
     const element = `
     <div class="error-api container align-center">
         <h1>Sorry, there's an api limitation!</h1>
@@ -272,13 +272,23 @@ export function errApiLimit() {
     return document.getElementById('bodyContent').innerHTML = element;
 }
 
-export function setDate(val) {
+function errDataOffline() {
+    const element = `
+    <div class="error-api container align-center">
+        <h1>Sorry, we don't have this data information yet!</h1>
+        <h2 class="red-text">You can grab the data while online!</h2>
+    </div>`;
+    
+    return document.getElementById('bodyContent').innerHTML = element;
+}
+
+function setDate(val) {
 	let date = new Date(val);
 	let options = { year: 'numeric', month: 'long', day: 'numeric' };
 	return date.toLocaleDateString("en", options);
 }
 
-export function getUrlParam(param, url) {
+function getUrlParam(param, url) {
     if (!url) url = window.location.href;
     param = param.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + param + '(=([^&#]*)|&|#|$)'),

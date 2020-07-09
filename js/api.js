@@ -1,5 +1,4 @@
-
-export default class baseAPI {
+class baseAPI {
     constructor() {
         this.base_url = "https://api.football-data.org/v2/",
         this.config = {

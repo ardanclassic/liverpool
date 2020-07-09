@@ -1,5 +1,3 @@
-import { home, playerInfo, allSquadInfo, leagueInfo, allLeagueInfo, getBookmark } from './script_2.js';
-
 document.addEventListener('DOMContentLoaded', function() {
 
 	// Detect Hash URL Change

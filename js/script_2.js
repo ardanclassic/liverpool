@@ -1,22 +1,43 @@
-import baseAPI from './api.js';
-import { bookmarkPlayer, getAllBookmarkPlayer, getBookmarkPlayerById, deleteBookmarkPlayer, 
-		 bookmarkLeague, getAllBookmarkLeague, getBookmarkLeagueById, deleteBookmarkLeague } from './db.js';
-import { setHomePage, setGroupSquad, setSquad, setPlayerInfo, setLeagueInfo,
-		 setAllLeagueInfo, getUrlParam, showLoading, errApiLimit } from './helper.js';
+const online = window.navigator.onLine;
 
-export function home() {
-	showLoading('homepage');
-	const base = new baseAPI();
-	base.teamInfo()
-	.then(info => setHomePage(info))
-	.catch(() => errApiLimit())
+function home() {
+	if (online) {
+		showLoading('homepage');
+		const base = new baseAPI();
+		base.teamInfo()
+		.then(info => {
+			setHomePage(info);
+			saveLiverpoolData(info);
+		})
+		.catch(() => errApiLimit())
+	} else {
+		getLiverpoolData(64)
+		.then(info => {
+			setHomePage(info);
+		})
+		.catch(() => errDataOffline()())
+	}
 }
 
-export function allSquadInfo() {
-	showLoading('team-squad');
-	const base = new baseAPI();
-	base.teamInfo()
-	.then(info => {
+function allSquadInfo() {
+	if (online) {
+		showLoading('team-squad');
+		const base = new baseAPI();
+		base.teamInfo()
+		.then(info => {
+			setSquadInfo(info);
+			saveLiverpoolData(info);
+		})
+		.catch(() => errApiLimit())
+	} else {
+		getLiverpoolData(64)
+		.then(info => {
+			setSquadInfo(info)
+		})
+		.catch(() => errDataOffline()())
+	}
+
+	function setSquadInfo(info) {
 		setGroupSquad();
 		const arrTeam = document.querySelectorAll("#team-squad .group");
 		arrTeam.forEach(mem => {
@@ -25,19 +46,29 @@ export function allSquadInfo() {
 			spec.forEach(dt => team = setSquad(team, dt))
 			mem.innerHTML = team;
 		});
-	})
-	.catch(() => errApiLimit())
+	}
 }
 
-export function allLeagueInfo() {
-	showLoading('competition-info');
-	const base = new baseAPI();
-	base.teamInfo()
-	.then(info => setAllLeagueInfo(info.activeCompetitions))
-	.catch(() => errApiLimit())
+function allLeagueInfo() {
+	if (online) {
+		showLoading('competition-info');
+		const base = new baseAPI();
+		base.teamInfo()
+		.then(info => {
+			setAllLeagueInfo(info.activeCompetitions)
+			saveLiverpoolData(info);
+		})
+		.catch(() => errApiLimit())
+	} else {
+		getLiverpoolData(64)
+		.then(info => {
+			setAllLeagueInfo(info.activeCompetitions)
+		})
+		.catch(() => errDataOffline()())
+	}
 }
 
-export async function playerInfo() {
+async function playerInfo() {
 	showLoading('player-info');
 	const playerID = getUrlParam('id');
 	const isPlayerAvailableOnDB = await getBookmarkPlayerById(parseInt(playerID));
@@ -49,19 +80,30 @@ export async function playerInfo() {
 		btnConfirm.innerText = "Delete from Favorite List?";
 		btnConfirm.onclick = () => deleteBookmarkPlayer(isPlayerAvailableOnDB);
 	} else {
-		// get data from server
-		const base = new baseAPI();
-		base.playerInfo(playerID)
-		.then(info => {
-			setPlayerInfo(info);
-			const btnConfirm = document.getElementById("btn-player");
-			btnConfirm.onclick = () => bookmarkPlayer(info)
-		})
-		.catch(() => errApiLimit())
+		if (online) {
+			// get data from server
+			const base = new baseAPI();
+			base.playerInfo(playerID)
+			.then(info => {
+				setPlayerInfo(info);
+				savePlayerByID(info);
+				const btnConfirm = document.getElementById("btn-player");
+				btnConfirm.onclick = () => bookmarkPlayer(info)
+			})
+			.catch(() => errApiLimit())
+		} else {
+			getPlayerByID(parseInt(playerID))
+			.then(info => {
+				setPlayerInfo(info);
+				const btnConfirm = document.getElementById("btn-player");
+				btnConfirm.onclick = () => bookmarkPlayer(info)
+			})
+			.catch(() => errDataOffline())
+		}
 	}
 }
 
-export async function leagueInfo() {
+async function leagueInfo() {
 	showLoading('league-info');
 	const leagueID = getUrlParam('id');
 	const isLeagueAvailableOnDB = await getBookmarkLeagueById(parseInt(leagueID));
@@ -73,19 +115,30 @@ export async function leagueInfo() {
 		btnConfirm.innerText = "Delete from Favorite List?";
 		btnConfirm.onclick = () => deleteBookmarkLeague(isLeagueAvailableOnDB);
 	} else {
-		// get data from server
-		const base = new baseAPI();
-		base.leagueInfo(leagueID)
-		.then(info => {
-			setLeagueInfo(info);
-			const btnConfirm = document.getElementById("btn-league");
-			btnConfirm.onclick = () => bookmarkLeague(info)
-		})
-		.catch(() => errApiLimit())
+		if (online) {
+			// get data from server
+			const base = new baseAPI();
+			base.leagueInfo(parseInt(leagueID))
+			.then(info => {
+				setLeagueInfo(info);
+				saveLeagueByID(info);
+				const btnConfirm = document.getElementById("btn-league");
+				btnConfirm.onclick = () => bookmarkLeague(info)
+			})
+			.catch(() => errApiLimit())
+		} else {
+			getLeagueByID(parseInt(leagueID))
+			.then(info => {
+				setLeagueInfo(info);
+				const btnConfirm = document.getElementById("btn-league");
+				btnConfirm.onclick = () => bookmarkLeague(info)
+			})
+			.catch(() => errDataOffline())
+		}
 	}
 }
 
-export function getBookmark() {
+function getBookmark() {
 	getAllBookmarkPlayer().then((players) => {
 		let rowHTML = `<div class="row" id="bookmark-player"></div>`;
 		let playersHTML = "";
