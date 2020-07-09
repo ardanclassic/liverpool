@@ -1,0 +1,516 @@
+body {
+    background-color: #000;
+}
+
+.body-content {
+    min-height: calc(100vh - 224px);
+    margin-top: 50px;
+    color: #fff;
+}
+
+nav {
+    background: #560b0e;
+    border-radius: 0 0 40px 40px;
+    box-shadow: inset 0 -8px 24px -16px #fff;
+}
+
+nav .nav-wrapper .brand-logo img {
+    width: 32px;
+}
+
+#nav-mobile {
+    background-image: url(../assets/image/lfc.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: inset -100px -20px 200px 70px #000;
+}
+#nav-mobile li {
+    background: #000000ab;
+    box-shadow: inset 0 0 20px 0 darkred;
+    border-radius: 10px;
+    width: 95%;
+    margin: 15px auto 0 auto;
+}
+
+.sidenav li a,
+.topnav li a {
+    color: salmon;
+    font-weight: 600;
+}
+.sidenav-img img {
+    width: 80%;
+    position: relative;
+    left: 10%;
+    top: 20px;
+    border-radius: 2em;
+    margin-bottom: 3em;
+}
+.img-cover {
+    position: absolute;
+    width: 80%;
+    height: 160px;
+    top: 20px;
+    left: 10%;
+    background: #000;
+    opacity: 0.5;
+}
+
+#logo-container img {
+    position: relative;
+    top: 7px;
+}
+
+.error-api h1,.error-api h2 {
+    font-size: 36px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    width: max-content;
+    text-align: center;
+}
+.error-api h2 {
+    top: 55%;
+}
+
+.preloader-wrapper.big {
+    position: absolute;
+    left: 45%;
+    top: 45%;
+}
+
+.img-parallax {
+    position: relative;
+    top: -50px;
+    background-image: url("../assets/image/hero.jpg");
+    height: calc(100vh - 50px);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.parallax-shadow {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    background: #000;
+    opacity: 0.8;
+    top: 64px;
+}
+.banner-text {
+    width: 85%;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.banner-text h1 {
+    margin: 0 0 24px 0;
+}
+.banner-text p {
+    margin: 10px 0;
+}
+.banner-text i {
+    font-size: 48px;
+    margin-right: 16px;
+}
+.banner-text a {
+    color: inherit;
+}
+
+.club-info h1,
+#competition-info h1 {
+    font-size: 24px;
+    margin: 24px 0;
+}
+.club-info table tr {
+    border-bottom: 1px solid #333;
+}
+.club-info table tr td:first-child {
+    color: #888;
+    width: 35%;
+}
+.club-info table tr td:last-child {
+    font-weight: 600;
+}
+.club-info table tr td a {
+    color: tomato;
+    text-decoration: underline;
+}
+
+.coach .card-image img {
+    left: 30%;
+    width: 90%;
+}
+#coach-img {
+    width: 60% !important;
+}
+
+.squad,
+#bookmark-player {
+    color: #fff;
+}
+.squad h1,
+#bookmark-player h1 {
+    font-size: 36px;
+    margin: 10px 0 24px;
+}
+.squad .card,
+#bookmark-player .card {
+    overflow: hidden;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    min-height: 140px;
+    padding: 16px 24px;
+    background: transparent;
+    border-radius: 20px;
+    box-shadow: inset 0 0 16px 0 red;
+}
+.squad .card .card-title,
+#bookmark-player .card .card-title {
+    line-height: 20px;
+    margin: 0;
+    font-weight: bold;
+    color: #560b0e;
+    width: 85%;
+}
+.squad .card h2,
+#bookmark-player .card h2 {
+    position: absolute;
+    bottom: -8%;
+    right: 10%;
+    color: #2f2b2b;
+}
+.squad .card i,
+#bookmark-player .card i {
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 8px;
+}
+.squad .info i,
+#bookmark-player .info i {
+    right: 10%;
+    transform: translate(-10%, 8px);
+}
+.squad .card-image,
+#bookmark-player .card-image {
+    position: absolute;
+    width: 40%;
+    top: 65%;
+    left: 0;
+    transform: translate(-5%, -65%);
+}
+
+#team-squad h1 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 36px;
+    margin: 36px 0 10px;
+}
+#team-squad h1 i {
+    position: relative;
+    top: 5px;
+}
+
+#player-info {
+    text-align: center;
+}
+#player-info .btn {
+    margin-top: 36px;
+    text-transform: inherit;
+    border-radius: 16px;
+    background-color: #114875;
+}
+#player-info .col {
+    margin-bottom: 24px;
+}
+#player-info .col:first-child {
+    position: relative;
+    height: 416px;
+}
+#player-info img {
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#player-info table tr {
+    border-bottom: 1px solid #333;
+}
+#player-info table tr td:first-child {
+    width: 40%;
+}
+#player-info table tr td:last-child {
+    color: yellow;
+    font-weight: 600;
+}
+
+
+#league-info h1 {
+    margin: 10px 0 36px;
+    text-align: center;
+    font-size: 32px;
+}
+#league-info #btn-league {
+    margin-top: 24px;
+    text-transform: inherit;
+    border-radius: 16px;
+    background-color: #114875;
+}
+#league-info table {
+    box-shadow: inset 0 0 50px -5px darkred;
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-bottom: 36px;
+}
+#league-info table thead tr th:nth-child(2),
+#league-info table tbody tr td:nth-child(2)
+{
+    text-align: left;
+}
+
+#league-info .card {
+    background-color: transparent;
+    position: relative;
+}
+#league-info .card .card-content {
+    padding: 16px 0;
+}
+
+#league-info .card .col:first-child {
+    min-height: 109px;
+    position: relative;
+}
+#league-info .card img {
+    width: 100%;
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 15px 5px #000;
+    
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%); */
+}
+#league-info .card .card-content .card-title {
+    font-weight: 600;
+    font-size: 36px;
+}
+#league-info .card .card-content p {
+    color: #888;
+}
+#league-info .card .card-content p span {
+    color: #fff;
+    margin-left: 5px;
+}
+#league-standing .group-standing h1 {
+    margin: 10px 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: salmon;
+}
+
+.all-competition h1 {
+    font-size: 36px;
+}
+.all-competition .divider {
+    margin-bottom: 36px;
+}
+#competition-info .collection,
+#bookmarkLeague .collection {
+    margin-bottom: 36px;
+    border: 0;
+}
+#competition-info .collection .collection-item,
+#bookmarkLeague .collection .collection-item {
+    background-color: transparent;
+    position: relative;
+    border-bottom: 1px solid #333;
+    padding: 24px 0;
+}
+#competition-info .collection .collection-item a,
+#bookmarkLeague .collection .collection-item a {
+    color: inherit;
+}
+#competition-info .collection img,
+#bookmarkLeague .collection img {
+    width: 100%;
+}
+#competition-info .collection .row .col:first-child,
+#bookmarkLeague .collection .row .col:first-child {
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 15px 5px #000;
+}
+#competition-info .collection .col.s9 span,
+#bookmarkLeague .collection .col.s9 span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    margin-left: 48px;
+}
+
+
+.favorite h1 {
+    font-size: 36px;
+}
+.favorite h3 {
+    font-size: 24px;
+    text-align: center;
+    color: #888;
+}
+.favorite .divider {
+    margin-bottom: 16px;
+}
+
+
+.scrollTop {
+    width: 36px;
+    height: 36px;
+    position: fixed;
+    z-index: 100;
+    bottom: 2%;
+    right: 7%;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    pointer-events: none;
+}
+.scrollTop.active {
+    opacity: 1;
+    pointer-events: auto;
+    bottom: 5%;
+}
+.scrollTop img {
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+    margin-top: 80px;
+    color: #fff;
+}
+footer p {
+    padding: 9px 20px;
+    width: max-content;
+    margin: 0 auto;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 4px 24px -6px #E31B23;
+}
+footer span {
+    color: red;
+    margin: 0 5px;
+}
+
+@media only screen and (max-width: 992px) {
+    #logo-container img {
+        position: relative;
+        top: 4px;
+        width: 24px;
+    }
+    .scrollTop {
+        bottom: -1em;
+        right: 1em;
+    }
+    .scrollTop.active { bottom: 1em; }
+    footer p { font-size: 12px; letter-spacing: 0.5px; }
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .error-api h1,.error-api h2 {
+        font-size: 20px;
+        width: 275px;
+    }
+
+    .parallax-shadow {
+        top: 56px;
+    }
+    .banner-text {
+        text-align: center;
+    }
+    .banner-text .col:first-child {
+        display: none;
+    }
+    .banner-text h1 {
+        font-size: 36px;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+    .banner-text p {
+        margin-bottom: 36px;
+    }
+    .banner-text i {
+        font-size: 48px;
+        margin: 0 16px;
+    }
+
+    .club-info .collection .col.s9 span {
+        font-size: 16px;
+        margin-left: 8px;
+    }
+    .club-info .collection .collection-item {
+        padding: 10px 0;
+    }
+
+    .coach .card-image img {
+        width: 80px;
+        left: 24px;
+    }
+
+    .squad .card-image img,
+    #bookmark-player .card-image img {
+        width: 100px;
+    }
+    .squad .card,
+    #bookmark-player .card {
+        padding: 12px;
+    }
+    .squad .card-image,
+    #bookmark-player .card-image {
+        position: absolute;
+        width: 65%;
+    }
+    .squad .card i,
+    #bookmark-player .card i {
+        top: 12px;
+    }
+    .squad .info i,
+    #bookmark-player .info i {
+        right: 10%;
+        transform: translate(-10%, 0);
+    }
+
+    #competition-info .collection, 
+    #bookmarkLeague .collection {
+        margin-bottom: 16px;
+    }
+
+    #player-info img {
+        width: 70%;
+    }
+    #player-info .col:first-child {
+        height: 250px;
+    }
+    #league-info .card #btn-league {
+        position: relative;
+    }
+    #league-info .card .card-content {
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    .not-found h1 {
+        font-size: 36px;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "name": "Liverpool",
+    "short_name": "Liverpool",
+    "description": "Liverpool Info",
+    "start_url": "/index.html",
+    "gcm_sender_id": "333696452969",
+    "display": "standalone",
+    "background_color": "#000",
+    "theme_color": "#E31B23",
+    "icons": [
+        {
+          "src": "/assets/icon/launch-96.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        },
+        {
+          "src": "/assets/icon/launch-128.png",
+          "sizes": "128x128",
+          "type": "image/png"
+        },
+        {
+          "src": "/assets/icon/launch-144.png",
+          "sizes": "144x144",
+          "type": "image/png"
+        },
+        {
+          "src": "/assets/icon/launch-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        },
+        {
+          "src": "/assets/icon/launch-512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+        }
+    ]
+}
